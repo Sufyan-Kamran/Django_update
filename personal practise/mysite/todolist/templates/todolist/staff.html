@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <title>Document</title>
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");:root{--header-height: 3rem;--nav-width: 68px;--first-color: #4723D9;--first-color-light: #AFA5D9;--white-color: #F7F6FB;--body-font: 'Nunito', sans-serif;--normal-font-size: 1rem;--z-fixed: 100}*,::before,::after{box-sizing: border-box}body{position: relative;margin: var(--header-height) 0 0 0;padding: 0 1rem;font-family: var(--body-font);font-size: var(--normal-font-size);transition: .5s}a{text-decoration: none}.header{width: 100%;height: var(--header-height);position: fixed;top: 0;left: 0;display: flex;align-items: center;justify-content: space-between;padding: 0 1rem;background-color: var(--white-color);z-index: var(--z-fixed);transition: .5s}.header_toggle{color: var(--first-color);font-size: 1.5rem;cursor: pointer}.header_img{width: 35px;height: 35px;display: flex;justify-content: center;border-radius: 50%;overflow: hidden}.header_img img{width: 40px}.l-navbar{position: fixed;top: 0;left: -30%;width: var(--nav-width);height: 100vh;background-color: var(--first-color);padding: .5rem 1rem 0 0;transition: .5s;z-index: var(--z-fixed)}.nav{height: 100%;display: flex;flex-direction: column;justify-content: space-between;overflow: hidden}.nav_logo, .nav_link{display: grid;grid-template-columns: max-content max-content;align-items: center;column-gap: 1rem;padding: .5rem 0 .5rem 1.5rem}.nav_logo{margin-bottom: 2rem}.nav_logo-icon{font-size: 1.25rem;color: var(--white-color)}.nav_logo-name{color: var(--white-color);font-weight: 700}.nav_link{position: relative;color: var(--first-color-light);margin-bottom: 1.5rem;transition: .3s}.nav_link:hover{color: var(--white-color)}.nav_icon{font-size: 1.25rem}.show{left: 0}.body-pd{padding-left: calc(var(--nav-width) + 1rem)}.active{color: var(--white-color)}.active::before{content: '';position: absolute;left: 0;width: 2px;height: 32px;background-color: var(--white-color)}.height-100{height:100vh}@media screen and (min-width: 768px){body{margin: calc(var(--header-height) + 1rem) 0 0 0;padding-left: calc(var(--nav-width) + 2rem)}.header{height: calc(var(--header-height) + 1rem);padding: 0 2rem 0 calc(var(--nav-width) + 2rem)}.header_img{width: 40px;height: 40px}.header_img img{width: 45px}.l-navbar{left: 0;padding: 1rem 1rem 0 0}.show{width: calc(var(--nav-width) + 156px)}.body-pd{padding-left: calc(var(--nav-width) + 188px)}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+  </style>
+
+</head>
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_img"> <img src="" alt=""> </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div><a href="#" class="nav_logo"> 
+                <i class='bx bx-layer nav_logo-icon'></i> 
+                <span class="nav_logo-name">TODO! ADMIN</span> 
+            </a>
+                <div class="nav_list">
+                    <a href="#" onclick="dashboard()" class="nav_link active"> 
+                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <span class="nav_name">Dashboard</span> 
+                    </a> 
+                    <a href="#" onclick="users()" class="nav_link">
+                        <i class='bx bx-user nav_icon'></i> 
+                        <span class="nav_name">Users</span> 
+                    </a> 
+                    <a href="#" onclick="notices()" class="nav_link"> 
+                        <i class='bx bx-message-square-detail nav_icon'></i> 
+                        <span class="nav_name">Notices</span> 
+                    </a>
+                    <a href="#" onclick="quries()" class="nav_link"> 
+                        <i class='bx bx-conversation nav_icon'></i>
+                         <span class="nav_name">Quries</span>
+                    </a> 
+                    
+                </div>
+            </div> 
+            <a href="#" class="nav_link"> 
+                <i class='bx bx-log-out nav_icon'></i> 
+                <span class="nav_name">SignOut</span> 
+            </a>
+        </nav>
+    </div>
+    <!--Container Main start-->
+    <div class="height-100 bg-light" id="main">
+        <h4>Main Components</h4>
+        <div class="row align-items-start p-5">
+            <div class="col mt-0 mb-0">
+                <h4>Users</h4>
+                <table class="table align-middle mb-0 bg-white"> 
+                    <thead class="bg-light"> 
+                        <tr> 
+                            <th>UID</th> 
+                            <th>First name</th> 
+                            <th>Last Name</th> 
+                            <th>Email</th> 
+                            <th>Password</th> 
+                            <th>Notification</th>
+                            <th>Username</th>  
+                            <th>Actions</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        
+                        {% for u in users%}
+                        <tr> 
+                            <td>{{u.id}}</td>
+                            <td> 
+                                <div class="d-flex align-items-center"> 
+                                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> 
+                                    <div class="ms-3"> 
+                                        <p class="fw-bold mb-1">{{u.username}}</p> 
+                                        
+                                    </div> 
+                                </div> 
+                            </td> 
+                            <td> 
+                                <p class="fw-normal mb-1">{{u.lname}}</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">{{u.email}}</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">{{u.password}}</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">{{u.notices}}</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">{{u.password}}</p> 
+                            </td> 
+                            <td> 
+                                <a href="/todolist/studview/{{u.id}}"><button id="qv{{u.id}}" class="btn btn-primary cart">Edit </button></a>
+                                <a href="/todolist/delete{{u.id}}" class="btn btn-danger text-light"> Delete </a>
+                            </td> 
+                        </tr> 
+                        {% endfor %}
+                    </tbody></table>
+            </div>
+        </div>
+            <div class="row align-items-start p-5">
+            <div class="col mt-0 mb-0">
+                <h4>Non Active User</h4>
+                <table class="table align-middle mb-0 bg-white"> 
+                    <thead class="bg-light"> 
+                        <tr> 
+                            <th>Name</th> 
+                            <th>Package</th> 
+                            <th>Status</th> 
+                            <th>Payment</th> 
+                            <th>Actions</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                         
+                        <tr> 
+                            <td> 
+                                <div class="d-flex align-items-center"> 
+                                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> 
+                                    <div class="ms-3"> 
+                                        <p class="fw-bold mb-1">John Doe</p> 
+                                        <p class="text-muted mb-0">john.doe@gmail.com</p> 
+                                    </div> 
+                                </div> 
+                            </td> 
+                            <td> 
+                                <p class="fw-normal mb-1">11 Mbs</p> 
+                                <p class="text-muted mb-0">IT department</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">Not Active</p> 
+                            </td> 
+                            <td class="text-danger"><B>Unpaid</B></td> 
+                            <td> 
+                                <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> 
+                            </td> 
+                        </tr> 
+                        <tr> 
+                            <td> 
+                                <div class="d-flex align-items-center"> 
+                                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> 
+                                    <div class="ms-3"> 
+                                        <p class="fw-bold mb-1">John Doe</p> 
+                                        <p class="text-muted mb-0">john.doe@gmail.com</p> 
+                                    </div> 
+                                </div> 
+                            </td> 
+                            <td> 
+                                <p class="fw-normal mb-1">11 Mbs</p> 
+                                <p class="text-muted mb-0">IT department</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">Not Active</p> 
+                            </td> 
+                            <td class="text-danger"><B>Unpaid</B></td> 
+                            <td> 
+                                <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> 
+                            </td> 
+                        </tr> 
+                        <tr> 
+                            <td> 
+                                <div class="d-flex align-items-center"> 
+                                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> 
+                                    <div class="ms-3"> 
+                                        <p class="fw-bold mb-1">John Doe</p> 
+                                        <p class="text-muted mb-0">john.doe@gmail.com</p> 
+                                    </div> 
+                                </div> 
+                            </td> 
+                            <td> 
+                                <p class="fw-normal mb-1">11 Mbs</p> 
+                                <p class="text-muted mb-0">IT department</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">Not Active</p> 
+                            </td> 
+                            <td class="text-danger"><B>Unpaid</B></td> 
+                            <td> 
+                                <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> 
+                            </td> 
+                        </tr> 
+                        <tr> 
+                            <td> 
+                                <div class="d-flex align-items-center"> 
+                                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> 
+                                    <div class="ms-3"> 
+                                        <p class="fw-bold mb-1">John Doe</p> 
+                                        <p class="text-muted mb-0">john.doe@gmail.com</p> 
+                                    </div> 
+                                </div> 
+                            </td> 
+                            <td> 
+                                <p class="fw-normal mb-1">11 Mbs</p> 
+                                <p class="text-muted mb-0">IT department</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">Not Active</p> 
+                            </td> 
+                            <td class="text-danger"><B>Unpaid</B></td> 
+                            <td> 
+                                <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> 
+                            </td> 
+                        </tr> 
+                        </tbody> 
+                    </table>
+                
+            </div>
+        </div>
+            <div class="row align-items-start p-5">
+            <div class="col mt-0 mb-0">mt-0 mb-0">
+                <h4>Notices</h4>
+                <table class="table align-middle mb-0 bg-white"> 
+                    <thead class="bg-light"> 
+                        <tr>
+                            <th>Notice ID</th> 
+                            <th>User ID</th>  
+                            <th>Name</th> 
+                            <th>Notice Title</th> 
+                            <th>Notice Decs</th> 
+                            <th>Status</th> 
+                            <th>Notice Date</th> 
+                            <th>Expiry Date</th> 
+                            <th>Actions</th>     
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        
+                        
+                        {% for i in notice%}                        
+                        <tr> 
+                            
+                            <td> 
+                                <p class="fw-normal mb-1">{{i.id}}</p> 
+                            </td>
+                            <td> 
+                                <p class="fw-normal mb-1">{{i.uid}}</p> 
+                            </td>
+                            <td> 
+                                <div class="d-flex align-items-center"> 
+                                    <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> 
+                                    <div class="ms-3"> 
+                                        <p class="fw-bold mb-1">{{i.username}}</p> 
+                                    </div> 
+                                </div> 
+                            </td> 
+                            <td> 
+                                <p class="fw-normal mb-1">{{i.notice_title}}</p> 
+                            </td> 
+                            <td> 
+                                <p class="text-muted mb-0">{{i.notice}}</p> 
+                            </td> 
+                            <td> 
+                                <p class=" mb-0 text-danger"><B>Pending</B></p> 
+                            </td> 
+                            <td> 
+                                <p class=" mb-0 text-danger"><B>{{i.notice_date}}</B></p> 
+                            </td> 
+                            <td>
+                                <p class="text-muted mb-0 text-center">{{i.expiry_date}}</p> 
+                            </td> 
+                            <td> 
+                                <button type="button" class="btn btn-primary text-light">Edit</button> 
+                                <button type="button" class="btn btn-success text-light">Complete</button> 
+                                <button type="button" class="btn btn-danger text-light">Delete</button> 
+                            </td> 
+                            
+                        </tr> 
+                        {% endfor %}
+                        
+                        </tbody> 
+                    </table>
+            </div>
+            
+            <div class="col mt-0 mb-0">mt-3 mb-3 w-100">
+                <h4>Finance</h4>
+                <table class="table align-middle mb-0 bg-white"> 
+                    <thead class="bg-light"> 
+                        <tr> 
+                            <th>User ID</th>
+                            <th>Name</th> 
+                            <th>Payment</th> 
+                            <th>Amount</th> 
+                            <th>Status</th> 
+                            <th>Date</th>
+                            <th>Address</th> 
+                            <th>Actions</th> 
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> <tr>
+                                <td><B>1593</B></td> 
+                                <td> 
+                                    <div class="d-flex align-items-center"> 
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> 
+                                        <div class="ms-3"> 
+                                            <p class="fw-bold mb-1">Kate Hunington</p> 
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p> 
+                                        </div> 
+                                    </div> 
+                                </td> 
+                                <td> 
+                                    <p class="fw-normal mb-1">Recieved</p> 
+                                </td> 
+                                    <td>Rs 2200</td>
+                                    <td>Recieved</td>
+                                    <td>12-02-2022</td>
+                                <td>Etc Sector 50/D lakhnow Society</td> 
+                                <td> 
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> 
+                                </td> 
+                            </tr> 
+                            
+                        </tbody> 
+                    </table>
+            </div>
+        </div>
+        <div class="row align-items-start mt-5 p-5">
+            <div class="col mt-0 mb-0">mt-5">
+        
+            </div>
+            <div class="col mt-0 mb-0">mt-5">
+        
+            </div>  
+    </div>
+    </div>
+    <!--Container Main end-->      
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+   
+   const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+   const toggle = document.getElementById(toggleId),
+   nav = document.getElementById(navId),
+   bodypd = document.getElementById(bodyId),
+   headerpd = document.getElementById(headerId)
+   
+   // Validate that all variables exist
+   if(toggle && nav && bodypd && headerpd){
+        toggle.addEventListener('click', ()=>{
+        // show navbar
+        nav.classList.toggle('show')
+        // change icon
+        toggle.classList.toggle('bx-x')
+        // add padding to body
+        bodypd.classList.toggle('body-pd')
+        // add padding to header
+        headerpd.classList.toggle('body-pd')
+   })
+   }
+   }
+   
+   showNavbar('header-toggle','nav-bar','body-pd','header')
+   
+   /*===== LINK ACTIVE =====*/
+   const linkColor = document.querySelectorAll('.nav_link')
+   
+   function colorLink(){
+   if(linkColor){
+   linkColor.forEach(l=> l.classList.remove('active'))
+   this.classList.add('active')
+   }
+   }
+   linkColor.forEach(l=> l.addEventListener('click', colorLink))
+   
+    // Your code to run since DOM is loaded and ready
+   });
+   var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    }, { 
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    }, { 
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+function dashboard(){
+    var main = document.getElementById('main');
+    main.innerHTML = '<h4>Main Components</h4><div class="row align-items-start p-5"><div class="col"><h4>Users</h4><ol><li>New Connection : 23</li><li>Old Connection : 1500</li><li>Freeze Connection : 39</li></ol> </div><div class="col"><h4>Quries</h4><ol><li>Total : 150</li><li>Pending : 93</li><li>Working : 30</li><li>Solved : 27</li></ol> </div><div class="col"><h4>Notices</h4><ol><li>Payment : 632</li><li>Maintainance : 29</li></ol> </div><div class="col"><h4>Complains</h4><ol><li>Total : 39</li><li>Connection : 23</li><li>Internet Speed : 11</li><li>Maintainance : 5</li></ol> </div><div class="col"><h4>Finance</h4><ol>                    <li>Paid : 790</li>                    <li>Unpaid : 610</li><li>Total : 1500</li></ol> </div></div><div class="row align-items-start mt-5 p-5"><div class="col mt-5"><h6 class="lead"> Overview</h6><canvas id="myChart"  style="width:100%;max-width:1000px"></canvas></div><div class="col mt-5"><h6 class="lead"> Indicator</h6><ul><li class="bg-primary w-25 mt-3 text-light text-center">New User</li><li class="bg-success w-25 mt-3 text-light text-center">Total User</li><li class="bg-danger w-25 mt-3 text-light text-center">Freeze User</li></ul></div></div>';
+};
+function users(){
+    var main = document.getElementById('main');
+    main.innerHTML = '<table class="table align-middle mb-0 bg-white"> <thead class="bg-light"> <tr> <th>Name</th> <th>Title</th> <th>Status</th> <th>Position</th> <th>Actions</th> </tr> </thead> <tbody> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> <div class="ms-3"> <p class="fw-bold mb-1">John Doe</p> <p class="text-muted mb-0">john.doe@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Software engineer</p> <p class="text-muted mb-0">IT department</p> </td> <td> <span class="badge badge-success rounded-pill d-inline">Active</span> </td> <td>Senior</td> <td> <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> </td> </tr> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> <div class="ms-3"> <p class="fw-bold mb-1">Alex Ray</p> <p class="text-muted mb-0">alex.ray@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Consultant</p> <p class="text-muted mb-0">Finance</p> </td> <td> <span class="badge badge-primary rounded-pill d-inline" >Onboarding</span > </td> <td>Junior</td> <td> <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> </td> </tr> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> <div class="ms-3"> <p class="fw-bold mb-1">Kate Hunington</p> <p class="text-muted mb-0">kate.hunington@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Designer</p> <p class="text-muted mb-0">UI/UX</p> </td> <td> <span class="badge badge-warning rounded-pill d-inline">Awaiting</span> </td> <td>Senior</td> <td> <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> </td> </tr> </tbody> </table>';
+    console.log("supper");
+};
+function quries(){
+    var main = document.getElementById('main');
+    main.innerHTML = '<table class="table align-middle mb-0 bg-white"> <thead class="bg-light"> <tr> <th>Name</th> <th>Title</th> <th>Status</th> <th>Position</th> <th>Actions</th> </tr> </thead> <tbody> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> <div class="ms-3"> <p class="fw-bold mb-1">John Doe</p> <p class="text-muted mb-0">john.doe@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Software engineer</p> <p class="text-muted mb-0">IT department</p> </td> <td> <span class="badge badge-success rounded-pill d-inline">Active</span> </td> <td>Senior</td> <td> <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> </td> </tr> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> <div class="ms-3"> <p class="fw-bold mb-1">Alex Ray</p> <p class="text-muted mb-0">alex.ray@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Consultant</p> <p class="text-muted mb-0">Finance</p> </td> <td> <span class="badge badge-primary rounded-pill d-inline" >Onboarding</span > </td> <td>Junior</td> <td> <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> </td> </tr> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> <div class="ms-3"> <p class="fw-bold mb-1">Kate Hunington</p> <p class="text-muted mb-0">kate.hunington@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Designer</p> <p class="text-muted mb-0">UI/UX</p> </td> <td> <span class="badge badge-warning rounded-pill d-inline">Awaiting</span> </td> <td>Senior</td> <td> <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> </td> </tr> </tbody> </table>';
+    console.log("supper");
+};
+function notices(){
+    var main = document.getElementById('main');
+    main.innerHTML = '<table class="table align-middle mb-0 bg-white"> <thead class="bg-light"> <tr> <th>Name</th> <th>Title</th> <th>Status</th> <th>Position</th> <th>Actions</th> </tr> </thead> <tbody> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" /> <div class="ms-3"> <p class="fw-bold mb-1">John Doe</p> <p class="text-muted mb-0">john.doe@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Software engineer</p> <p class="text-muted mb-0">IT department</p> </td> <td> <span class="badge badge-success rounded-pill d-inline">Active</span> </td> <td>Senior</td> <td> <button type="button" class="btn btn-link btn-sm btn-rounded"> Edit </button> </td> </tr> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> <div class="ms-3"> <p class="fw-bold mb-1">Alex Ray</p> <p class="text-muted mb-0">alex.ray@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Consultant</p> <p class="text-muted mb-0">Finance</p> </td> <td> <span class="badge badge-primary rounded-pill d-inline" >Onboarding</span > </td> <td>Junior</td> <td> <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> </td> </tr> <tr> <td> <div class="d-flex align-items-center"> <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" /> <div class="ms-3"> <p class="fw-bold mb-1">Kate Hunington</p> <p class="text-muted mb-0">kate.hunington@gmail.com</p> </div> </div> </td> <td> <p class="fw-normal mb-1">Designer</p> <p class="text-muted mb-0">UI/UX</p> </td> <td> <span class="badge badge-warning rounded-pill d-inline">Awaiting</span> </td> <td>Senior</td> <td> <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark" > Edit </button> </td> </tr> </tbody> </table>';
+    console.log("supper");
+};
+  </script>
+</body>
+</html>
